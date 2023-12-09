@@ -5,14 +5,14 @@ metadata:
   namespace: dev
 spec:
   hosts:
-    # - istio.example
+    - istio.example
     - first-app
-  # gateways:
-  #   - api
+  gateways:
+    - api
   http:
-    # - match:
-    #     - uri:
-    #         prefix: /
+    - match:
+        - uri:
+            prefix: /
     - route:
         - destination:
             host: first-app
