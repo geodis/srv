@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: first-app-v2
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: first-app
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: first-app
+        version: v2
+        istio: monitor
+    spec:
+      containers:
+      - image: nginx:latest
+        imagePullPolicy: Always
+        name: first-app
+        env:
+          - name: SERVICE
+            value: first-app
+          - name: VERSION
+            value: v2
+        ports:
+          - name: http
+            containerPort: 8080
+        volumeMounts:
+          - name: html
+            path: /usr/share/nginx/html
+      initContainers:
+      - image: busybox:latest
+        name: init
+        env:
+          - name: VERSION
+            value: v2
+        command: ['sh', '-c', 'echo "<h1> ${VERSION} container!</h1>" >> /usr/share/nginx/html/index.html']
+        volumeMounts:
+          - name: html
+            mountPath:  /usr/share/nginx/html/
+      volumeMounts:
+        - name: html
+          emptyDir: {}
+        
+            
+        
