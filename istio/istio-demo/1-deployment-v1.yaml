@@ -41,7 +41,7 @@ spec:
         volumeMounts:
           - name: html
             mountPath:  /usr/share/nginx/html/
-      volumeMounts:
+      volumes:
         - name: html
           emptyDir: {}
         
