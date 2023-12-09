@@ -13,7 +13,7 @@ spec:
     - match:
         - uri:
             prefix: /
-    - route:
+      route:
         - destination:
             host: first-app
             subset: v1
