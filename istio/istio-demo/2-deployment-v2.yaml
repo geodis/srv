@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,30 +17,16 @@ spec:
         istio: monitor
     spec:
       containers:
-        - image: nginx:latest
-          imagePullPolicy: Always
-          name: first-app
-          env:
-            - name: SERVICE
-              value: first-app
-            - name: VERSION
-              value: v2
-          ports:
-            - name: http
-              containerPort: 80
-          volumeMounts:
-            - name:  html
-              mountPath:  /usr/share/nginx/html/              
-      initContainers:
-        - image: busybox:latest
-          name: html
-          env:
-            - name: VERSION
-              value: v2
-          command: ['sh', '-c','echo "<h1>${VERSION} container!</h1>" >> /usr/share/nginx/html/index.html']
-          volumeMounts:
-            - name: html
-              mountPath:  /usr/share/nginx/html/
-      volumes:
-        - name: html
-          emptyDir: {}
+      - image: aputra/myapp-lesson155:latest
+        imagePullPolicy: Always
+        name: first-app
+        env:
+          - name: SERVICE
+            value: first-app
+          - name: VERSION
+            value: v2
+        ports:
+          - name: http
+            containerPort: 8080
+            
+        
