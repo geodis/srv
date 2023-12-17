@@ -117,7 +117,7 @@ metadata:
   namespace: production
 spec:
   hosts:
-    - app.devopsbyexample.com
+    - istio.example
     - second-app
   gateways:
     - api
