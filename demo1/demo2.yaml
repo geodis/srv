@@ -140,3 +140,36 @@ spec:
   podMetricsEndpoints:
   - port: http-envoy-prom
     path: stats/prometheus
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-prom
+  namespace: istio-ingress
+  labels:
+    app: gateway
+spec:
+  ports:
+    - name: metrics
+      port: 15090
+  selector:
+    app: gateway
+    istio: gateway
+    
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: myapp
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  namespaceSelector:
+    matchNames:
+      - istio-ingress
+  selector:
+    matchLabels:
+      app: gateway
+  endpoints:
+    - port: metrics
+      path: /stats/prometheus
