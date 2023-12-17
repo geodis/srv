@@ -127,7 +127,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: istio-pods
-  namespace: staging
+  namespace: production
   labels:
     component: main
 spec:
