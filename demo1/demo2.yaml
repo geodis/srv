@@ -122,6 +122,7 @@ spec:
             host: second-app
             subset: v2
           weight: 90
+
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
