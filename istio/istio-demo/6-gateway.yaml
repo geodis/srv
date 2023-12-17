@@ -13,3 +13,13 @@ spec:
         protocol: HTTP
       hosts:
         - istio.example
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - istio.example
+      tls:
+        credentialName: cert-example-crt
+        mode: SIMPLE
+        
