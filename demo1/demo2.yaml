@@ -81,18 +81,6 @@ spec:
   selector:
     app: second-app
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: second-app
-  namespace: production
-spec:
-  ports:
-    - name: http
-      port: 8080
-  selector:
-    app: second-app
----
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
